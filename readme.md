@@ -1,7 +1,7 @@
 ## @zaeny/mongodb
 
 [![npm version](https://img.shields.io/npm/v/@zaeny/mongodb.svg)](https://www.npmjs.com/package/@zaeny/mongodb)
-![npm downloads](https://img.shields.io/npm/dm/@zaeny/mongodb.svg)  
+
 
 > Mongodb utility pure functions
 
