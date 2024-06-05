@@ -116,3 +116,4 @@ example of usage transacting
 
 ### Changes
  - [1.0.0] add `query` and `transact`
+ - [1.0.1] fix bugs `transact` allow operation default

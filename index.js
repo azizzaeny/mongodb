@@ -44,8 +44,8 @@ var extendOperation = ({upsert}) => {
       "$delete":{ deleteOne: { filter: value.$match } },
       "$deleteMany": { deleteMany: { filter: value.$match } }
     };
-    if(operation[key])return operation[key];
-    return operation;
+    if(operation[key]) return operation[key];
+    return op;
   }
 }
 
