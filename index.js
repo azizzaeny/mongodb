@@ -8,6 +8,16 @@ var map = (...args) =>{
   return arr.map(fn);
 }
 
+var dissoc =(...args) => {
+  let [obj, ...keys] = args;
+  if (args.length === 1) {
+    return (...keysA) => dissoc(obj, ...keysA);
+  }
+  let newObj = { ...obj };
+  (keys.forEach(key => delete newObj[key]));
+  return newObj;
+}
+
 var isFn = (value) => typeof value === 'function';
 
 var mongodb = require('mongodb');
@@ -36,11 +46,12 @@ var query = (spec, client)=>{
 
 var extendOperation = ({upsert}) => {
   return (op, i) => { // map  array
-    let [[key, value]] = Object.entries(op);    
+    let [[key, value]] = Object.entries(op);
     let operation = {
       "$create" : { insertOne: { document: value } },
-      "$update": { updateOne:{ filter: value.$match, update: value.$set, upsert: upsert }},
-      "$updateMany": { updateMany:{ filter: value.$match, update: value.$set } },
+      "$update": { updateMany:{ filter: value.$match, update: dissoc(value, '$match' ), upsert: upsert }},
+      "$updateOne": { updateOne:{ filter: value.$match, update: dissoc(value, '$match' ), upsert: upsert }},      
+      "$updateMany": { updateMany:{ filter: value.$match, update: dissoc(value, '$match') } },
       "$delete":{ deleteOne: { filter: value.$match } },
       "$deleteMany": { deleteMany: { filter: value.$match } }
     };

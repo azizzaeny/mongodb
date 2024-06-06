@@ -117,3 +117,4 @@ example of usage transacting
 ### Changes
  - [1.0.0] add `query` and `transact`
  - [1.0.1] fix bugs `transact` allow operation default
+ - [1.1.1] breaking changes `transact` now instead of `$set` `$set` it work on top operation
